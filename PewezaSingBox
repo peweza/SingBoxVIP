@@ -1,27 +1,23 @@
-{
-  "log": {
-    "level": "warn",
-    "timestamp": true
-  },
-  "dns": {
-    "servers": [
-      {
-        "type": "https",
-        "server": "8.8.8.8",
-        "detour": "🌐 Anonymous Multi",
-        "tag": "dns-remote"
-      },
-      {
-        "type": "udp",
-        "server": "8.8.8.8",
-        "server_port": 53,
-        "tag": "dns-direct"
-      },
-      {
-        "type": "fakeip",
-        "tag": "dns-fake",
-        "inet4_range": "198.18.0.0/15",
-        "inet6_range": "fc00::/18"
+"dns": {
+  "servers": [
+    {
+      "tag": "dns-remote",
+      "address": "https://8.8.8.8/dns-query",
+      "strategy": "prefer_ipv4",
+      "detour": "🌐 Anonymous Multi"
+    },
+    {
+      "tag": "dns-direct",
+      "address": "8.8.8.8",
+      "address_resolver": "system",
+      "strategy": "prefer_ipv4"
+    },
+    {
+      "tag": "dns-fake",
+      "address": "fakeip",
+      "fakeip": {
+        "ipv4_range": "198.18.0.0/15",
+        "ipv6_range": "fc00::/18"
       }
     ],
     "rules": [
